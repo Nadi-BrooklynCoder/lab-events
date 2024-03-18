@@ -33,6 +33,19 @@ function makeMove(e) {
     } 
 }
 
+function reset() {
+    while(board.hasChildNodes()){
+        board.removeChild(board.firstElementChild);
+    }
+    player = 1;
+    makeBoard();
+    }
+
+
+resetBtn.addEventListener('click',() => {
+    reset();
+})
+
 // function winningBoard() {
 //     board =  [
 //         [0,1,2],
