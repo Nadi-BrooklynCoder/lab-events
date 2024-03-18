@@ -1,5 +1,5 @@
 let board = document.querySelector('div');
-let resetBtn = document.querySelector('button')
+let resetBtn = document.querySelector('.reset')
 let player = 1;
 
 
@@ -7,7 +7,7 @@ let player = 1;
 function makeBoard() {
 for(let i = 0; i < 9; i++) {
     let square = document.createElement('div');
-    square.classList.add('square', 'empty');
+    square.classList.add('empty', 'square');
     square.addEventListener('click', (e) => {
         makeMove(e)
     })
@@ -34,15 +34,15 @@ function makeMove(e) {
 }
 
 function reset() {
-    while(board.hasChildNodes()){
-        board.removeChild(board.firstElementChild);
+    const squares = document.querySelectorAll('.square');
+    for(let square of squares){
+        square.remove();
     }
     player = 1;
     makeBoard();
-    }
+}
 
-
-resetBtn.addEventListener('click',() => {
+resetBtn.addEventListener('click', () => {
     reset();
 })
 
