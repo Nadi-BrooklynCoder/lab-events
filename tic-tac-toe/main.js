@@ -2,8 +2,6 @@ let board = document.querySelector('div');
 let resetBtn = document.querySelector('.reset')
 let player = 1;
 
-
-
 function makeBoard() {
 for(let i = 0; i < 9; i++) {
     let square = document.createElement('div');
@@ -13,6 +11,7 @@ for(let i = 0; i < 9; i++) {
     })
     board.append(square);
  }
+ gameOver();
 }
 
 makeBoard();
@@ -26,11 +25,12 @@ function makeMove(e) {
         if(player === 1){
         e.target.textContent = 'X';
         player = 0;
-        }else {
+        } else {
             e.target.textContent = 'O';
             player = 1;
         }
     } 
+    gameOver();
 }
 
 function reset() {
@@ -46,22 +46,22 @@ resetBtn.addEventListener('click', () => {
     reset();
 })
 
-// function winningBoard() {
-//     board =  [
-//         [0,1,2],
-//         [3,4,5],
-//         [6,7,8],
-//         [0,4,8],
-//         [2,4,6],
-//         [0,3,6],
-//         [1,4,7],
-//         [2,5,8]
-//     ];
-//     makeMove();
-// }
+function gameOver() {
+    const squares = document.querySelectorAll('.square');
+    let boardFull = true;
 
-// winningBoard();
+    for(let square of squares){
+        if(square.classList.contains('empty')){
+            boardFull = false;
+        }
+    } if(boardFull){
+        alert(`GAME OVER!`)
+    
+    }
+}
+gameOver();
 
+   
 
 
 
